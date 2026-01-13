@@ -56,6 +56,17 @@ WORDPROCESSINGPROJECT/
 ```
 data/raw/genz_sentences.csv
 ```
+## Why RSS Feeds?
+
+RSS feeds provide a structured and reliable way to collect real-time news content from multiple publishers without scraping individual websites.  
+Using Google News RSS ensures:
+- Source diversity
+- Reduced duplication
+- Cleaner and consistent text data
+- Ethical data collection
+
+This makes the dataset suitable for word processing and linguistic analysis tasks.
+
 
 ---
 

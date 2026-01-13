@@ -2,11 +2,10 @@ import pandas as pd
 import re
 import string
 
-# Paths
 INPUT_FILE = "data/processed/genz_sentences_cleaned.csv"
 OUTPUT_FILE = "data/processed/genz_tokens.csv"
 
-# Basic English stopwords (kept minimal on purpose)
+# Basic English stopwords
 STOPWORDS = {
     "the", "is", "and", "to", "of", "in", "for", "on", "with", "as",
     "by", "at", "from", "that", "this", "it", "are", "was", "be"
