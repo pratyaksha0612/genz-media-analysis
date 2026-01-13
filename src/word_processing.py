@@ -2,7 +2,7 @@ import pandas as pd
 import re
 import string
 
-INPUT_FILE = "data/processed/genz_sentences_cleaned.csv"
+INPUT_FILE = "data/processed/genz_sentences_processed.csv"
 OUTPUT_FILE = "data/processed/genz_tokens.csv"
 
 # Basic English stopwords
@@ -26,7 +26,7 @@ def tokenize(text):
 def main():
     df = pd.read_csv(INPUT_FILE)
 
-    df["clean_text"] = df["Sentence"].apply(clean_text)
+    df["clean_text"] = df["processed_sentence"]
     df["tokens"] = df["clean_text"].apply(tokenize)
 
     df[["Sentence", "tokens"]].to_csv(OUTPUT_FILE, index=False)
