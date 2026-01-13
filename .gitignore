@@ -6,10 +6,6 @@ __pycache__/
 venv/
 env/
 
-# Data files (keep raw/processed CSVs out of repo if needed)
-data/raw/*.csv
-data/processed/*.csv
-
 # OS files
 .DS_Store
 Thumbs.db
