@@ -1,164 +1,83 @@
-# Gen Z News Text Dataset – Word Processing Project
+# Gen Z Word Processing Project
 
-## Project Overview
+This project focuses on collecting Gen Z–related textual data from online news sources and preparing it for word processing and further text analysis.
 
-This project focuses on **collecting, cleaning, and preparing textual data related to Generation Z (Gen Z)** from online news sources for further **word processing and NLP tasks**.
+## Project Status
+**Current stage:** Web scraping completed and data prepared for word processing.
 
-The dataset is built using Google News RSS feeds and is structured to support tasks such as:
+---
 
-* Text preprocessing
-* Tokenization
-* Frequency analysis
-* Sentiment analysis
-* NLP-based word processing experiments
+## Overview
+The objective of this project is to study how Generation Z is represented in online news media.  
+At this stage, the work focuses on:
+- Collecting relevant textual data
+- Cleaning and structuring the data
+- Preparing it for word processing tasks
 
-The project follows a **clean data pipeline approach**, separating raw data collection from data cleaning and preprocessing.
+Further word processing and analysis will be carried out based on guidance from the project supervisor.
+
+---
+
+## Data Collection
+- News data is collected using **Google News RSS feeds**
+- Multiple Gen Z–related queries are used to ensure coverage across topics such as lifestyle, work culture, psychology, and technology
+- Article titles and descriptions are extracted as text data
+
+---
+
+## Data Cleaning & Preparation
+The collected data undergoes the following steps:
+- Removal of HTML tags and noise
+- Sentence-level extraction
+- Deduplication to remove repeated content
+- Text normalization and preprocessing
+- Tokenization for word-level processing
+
+The processed data is stored in structured CSV files for further analysis.
 
 ---
 
 ## Project Structure
-
-```
-WORDPROCESSINGPROJECT/
+WordProcessingProject/
 │
 ├── data/
-│   ├── raw/
-│   │   └── genz_sentences.csv
-│   └── processed/
-│       └── genz_sentences_cleaned.csv
+│ ├── raw/ # Collected raw data
+│ └── processed/ # Cleaned and processed datasets
 │
 ├── scripts/
-│   ├── collect_data.py
-│   └── clean_data.py
+│ ├── collect_data.py
+│ └── clean_data.py
+│
+├── src/
+│ ├── word_preprocessing.py
+│ ├── word_processing.py
+│ ├── build_vocab.py
+│ └── tokens_to_sequences.py
+│
+├── docs/
+│ └── PROJECT_DETAILS.md
 │
 ├── requirements.txt
 └── README.md
-```
-
----
-
-## Data Collection (`collect_data.py`)
-
-* Fetches news articles using **Google News RSS feeds**
-* Queries include multiple Gen Z–related topics such as lifestyle, work culture, psychology, and technology
-* Extracts sentences from article titles and descriptions
-* Filters sentences with **at least 6 words**
-* Normalizes text to remove:
-
-  * HTML tags
-  * URLs
-  * Extra whitespace
-  * Unicode inconsistencies
-* Removes duplicate sentences using normalized text comparison
-
-**Output:**
-
-```
-data/raw/genz_sentences.csv
-```
-## Why RSS Feeds?
-
-RSS feeds provide a structured and reliable way to collect real-time news content from multiple publishers without scraping individual websites.  
-Using Google News RSS ensures:
-- Source diversity
-- Reduced duplication
-- Cleaner and consistent text data
-- Ethical data collection
-
-This makes the dataset suitable for word processing and linguistic analysis tasks.
-
-
----
-
-## Data Cleaning (`clean_data.py`)
-
-* Takes raw sentences as input
-* Further cleans text for word processing readiness
-* Ensures consistency and readability of sentences
-* Removes remaining noise and formatting issues
-
-**Output:**
-
-```
-data/processed/genz_sentences_cleaned.csv
-```
-
----
-
-## Dataset Description
-
-### `genz_sentences.csv` (Raw)
-
-* Contains unique Gen Z–related sentences
-* Directly extracted from news sources
-* Includes source URLs for traceability
-
-### `genz_sentences_cleaned.csv` (Processed)
-
-* Cleaned and standardized version of raw data
-* Ready for NLP and word processing tasks
-
-**CSV Columns:**
-
-* `Sentence`
-* `Source`
-
----
-
-## Installation & Setup
-
-1. Clone the repository
-2. Install dependencies:
-
-```bash
-pip install -r requirements.txt
-```
-
-3. Run data collection:
-
-```bash
-python scripts/collect_data.py
-```
-
-4. Run data cleaning:
-
-```bash
-python scripts/clean_data.py
-```
 
 ---
 
 ## Technologies Used
-
-* Python 3
-* Requests
-* BeautifulSoup
-* Regular Expressions
-* CSV handling
+- Python
+- Requests
+- BeautifulSoup
+- Pandas
+- NLTK
+- Regular Expressions
 
 ---
 
-## Use Cases
-
-* Word processing assignments
-* NLP preprocessing pipelines
-* Linguistic analysis of Gen Z discourse
-* Academic research projects
+## Next Steps
+- Proceed with word processing and analysis as per supervisor’s instructions
+- Explore word frequency, patterns, or other linguistic insights if required
 
 ---
 
 ## Notes
-
-* Data is collected from publicly available RSS feeds
-* Project is intended for **educational and research purposes only**
-
----
-
-## Future Scope
-
-* Tokenization and lemmatization
-* Sentiment analysis
-* Topic modeling
-* Visualization of word frequencies
-
----
+This repository is maintained as part of a **group academic project**.  
+All progress has been documented incrementally to ensure clarity and reproducibility.
