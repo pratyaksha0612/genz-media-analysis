@@ -8,7 +8,7 @@ nltk.download("stopwords")
 nltk.download("wordnet")
 nltk.download("omw-1.4")
 
-INPUT_PATH = "data/raw/genz_sentences.csv"
+INPUT_PATH = "data/processed/genz_sentences_cleaned.csv"
 OUTPUT_PATH = "data/processed/genz_sentences_processed.csv"
 
 df = pd.read_csv(INPUT_PATH)
