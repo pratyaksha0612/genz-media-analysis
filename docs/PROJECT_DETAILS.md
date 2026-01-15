@@ -5,7 +5,6 @@ This project aims to build a structured textual dataset related to **Generation 
 
 The intention is to first ensure high-quality data collection and preparation before proceeding to deeper word processing or analytical stages.
 
----
 
 ## Data Source and Collection Method
 The data is collected using **Google News RSS feeds**, which provide structured access to news headlines and short descriptions from multiple publishers. RSS feeds were chosen because they:
@@ -15,7 +14,6 @@ The data is collected using **Google News RSS feeds**, which provide structured 
 
 Multiple Gen Z–related search queries were used to collect diverse news coverage across social, cultural, and professional contexts.
 
----
 
 ## Text Extraction Strategy
 From each RSS feed entry:
@@ -24,8 +22,6 @@ From each RSS feed entry:
 - content is split at the sentence level to improve granularity
 
 Sentence-level extraction allows better control during cleaning and makes the dataset more suitable for word processing and linguistic analysis.
-
----
 
 ## Data Cleaning and Normalization
 The collected text undergoes several preprocessing steps to improve quality and consistency:
@@ -36,7 +32,6 @@ The collected text undergoes several preprocessing steps to improve quality and 
 
 These steps ensure that superficial formatting differences do not affect later processing stages.
 
----
 
 ## Deduplication Approach
 Duplicate and near-duplicate sentences can occur due to:
@@ -45,7 +40,6 @@ Duplicate and near-duplicate sentences can occur due to:
 
 Deduplication is handled during preprocessing by normalizing sentences before comparison. This ensures that repeated content does not bias later word-level analysis.
 
----
 
 ## Linguistic Preprocessing
 After cleaning, linguistic preprocessing is applied to prepare the text for word processing:
@@ -55,8 +49,6 @@ After cleaning, linguistic preprocessing is applied to prepare the text for word
 
 This step improves consistency and reduces vocabulary size, which is important for meaningful word-level analysis.
 
----
-
 ## Tokenization and Structuring
 The processed text is then tokenized:
 - sentences are broken into individual word tokens
@@ -65,7 +57,6 @@ The processed text is then tokenized:
 
 This representation bridges the gap between raw text and numerical processing.
 
----
 
 ## Preparation for Word Processing
 To support future word processing tasks:
@@ -75,13 +66,13 @@ To support future word processing tasks:
 
 At this stage, the data is **fully prepared** for word processing, frequency analysis, or further NLP-based exploration.
 
----
+
 
 ## Current Status
 The web scraping and data preparation pipeline has been completed successfully.  
 The dataset is cleaned, structured, and ready for the next phase of word processing, which will be carried out based on further project guidance.
 
----
+
 
 ## Design Considerations
 The project follows a modular design:
@@ -91,7 +82,6 @@ The project follows a modular design:
 
 This approach ensures clarity both for academic evaluation and future extensions.
 
----
 
 ## Scope for Next Steps
 Depending on requirements, the prepared data can be used for:
