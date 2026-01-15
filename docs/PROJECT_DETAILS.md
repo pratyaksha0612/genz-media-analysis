@@ -1,59 +1,102 @@
 # Project Details
 
-## Overview
-This project builds a **clean, sentence-level text dataset** related to *Generation Z* using online news content. The processed data is designed for **word processing and NLP-based analysis**, such as text analysis, topic modeling, and sentiment studies.
+## Purpose of the Project
+This project aims to build a structured textual dataset related to **Generation Z** by collecting news content from online sources and preparing it for word processing tasks. The focus of the work so far has been on creating a reliable and clean data pipeline that can support further textual analysis.
 
+The intention is to first ensure high-quality data collection and preparation before proceeding to deeper word processing or analytical stages.
 
-## What Are RSS Feeds?
-**RSS (Really Simple Syndication)** feeds are structured XML files used by news websites to publish updated content like headlines and summaries. They allow automated and reliable data collection without scraping full web pages.
+---
 
+## Data Source and Collection Method
+The data is collected using **Google News RSS feeds**, which provide structured access to news headlines and short descriptions from multiple publishers. RSS feeds were chosen because they:
+- offer regularly updated content
+- reduce the need for full web-page scraping
+- ensure consistent data structure across sources
 
-## Why Google News RSS?
-Google News aggregates articles from multiple verified publishers. Using its RSS feeds ensures:
-- Diverse and up-to-date sources
-- Reduced publisher bias
-- Consistent data structure
+Multiple Gen Z–related search queries were used to collect diverse news coverage across social, cultural, and professional contexts.
 
+---
 
-## Data Collection Process
-- Multiple Gen Z–related queries are defined (lifestyle, trends, work culture, psychology, technology).
-- For each query, a Google News RSS feed is fetched.
-- Article titles, descriptions, and source links are extracted.
+## Text Extraction Strategy
+From each RSS feed entry:
+- article titles and descriptions are extracted
+- text is treated as raw unstructured data
+- content is split at the sentence level to improve granularity
 
+Sentence-level extraction allows better control during cleaning and makes the dataset more suitable for word processing and linguistic analysis.
 
-## Text Processing
-- Text is split into individual sentences.
-- Short or low-information sentences are discarded.
-- HTML tags, URLs, and extra whitespace are removed.
-- Unicode characters and punctuation are normalized.
+---
 
+## Data Cleaning and Normalization
+The collected text undergoes several preprocessing steps to improve quality and consistency:
+- removal of HTML tags and unnecessary symbols
+- normalization of punctuation and spacing
+- lowercasing of text
+- handling of encoding inconsistencies
 
-## Deduplication
-To avoid repetition across articles and sources:
-- Each sentence is normalized (case, punctuation, spacing).
-- Only unique sentences are retained.
-- Original readable text is preserved in the final dataset.
+These steps ensure that superficial formatting differences do not affect later processing stages.
 
+---
 
-## Dataset Output
-The final dataset is stored as a CSV file with:
-- **Sentence** – cleaned Gen Z–related text
-- **Source** – corresponding article link
+## Deduplication Approach
+Duplicate and near-duplicate sentences can occur due to:
+- similar headlines published by different sources
+- minor punctuation or formatting variations
 
-Files are organized into:
-- `data/raw/` – unprocessed data
-- `data/processed/` – cleaned dataset
+Deduplication is handled during preprocessing by normalizing sentences before comparison. This ensures that repeated content does not bias later word-level analysis.
 
+---
 
-## Intended Use
-This dataset is suitable for:
-- Word processing experiments
-- NLP analysis and modeling
-- Media and linguistic analysis of Gen Z narratives
+## Linguistic Preprocessing
+After cleaning, linguistic preprocessing is applied to prepare the text for word processing:
+- stopwords are removed to reduce noise
+- words are lemmatized to bring them to their base forms
+- sentences are transformed into normalized representations
 
+This step improves consistency and reduces vocabulary size, which is important for meaningful word-level analysis.
 
-## Design Approach
-The project emphasizes:
-- Data quality over volume
-- Clear preprocessing steps
-- Reproducibility and documentation
+---
+
+## Tokenization and Structuring
+The processed text is then tokenized:
+- sentences are broken into individual word tokens
+- very short or insignificant tokens are filtered out
+- structured token lists are generated for each sentence
+
+This representation bridges the gap between raw text and numerical processing.
+
+---
+
+## Preparation for Word Processing
+To support future word processing tasks:
+- a vocabulary mapping is created from the tokenized data
+- words are converted into numerical sequences
+- processed datasets are stored in a reusable format
+
+At this stage, the data is **fully prepared** for word processing, frequency analysis, or further NLP-based exploration.
+
+---
+
+## Current Status
+The web scraping and data preparation pipeline has been completed successfully.  
+The dataset is cleaned, structured, and ready for the next phase of word processing, which will be carried out based on further project guidance.
+
+---
+
+## Design Considerations
+The project follows a modular design:
+- data collection, cleaning, and processing are handled in separate steps
+- each stage produces a clear output for the next stage
+- this structure improves reproducibility and ease of explanation
+
+This approach ensures clarity both for academic evaluation and future extensions.
+
+---
+
+## Scope for Next Steps
+Depending on requirements, the prepared data can be used for:
+- word frequency and pattern analysis
+- phrase and n-gram extraction
+- thematic or sentiment-based studies
+
+Further analysis will be determined after review of the current stage.
