@@ -34,35 +34,38 @@ The collected data undergoes the following steps:
 The processed data is stored in structured CSV files for further analysis.
 
 ## Project Structure
+
+<pre>
 WordProcessingProject/
 │
 ├── data/
-│ ├── raw/
-│ │ └── genz_sentences.csv
-│ │
-│ └── processed/
-│ ├── genz_sentences_cleaned.csv
-│ ├── genz_sentences_processed.csv
-│ ├── genz_tokens.csv
-│ ├── vocab.json
-│ └── genz_sequences.csv
+│   ├── raw/
+│   │   └── genz_sentences.csv
+│   │
+│   └── processed/
+│       ├── genz_sentences_cleaned.csv
+│       ├── genz_sentences_processed.csv
+│       ├── genz_tokens.csv
+│       ├── vocab.json
+│       └── genz_sequences.csv
 │
 ├── scripts/
-│ ├── collect_data.py
-│ └── clean_data.py
+│   ├── collect_data.py
+│   └── clean_data.py
 │
 ├── src/
-│ ├── word_preprocessing.py
-│ ├── word_processing.py
-│ ├── build_vocab.py
-│ └── tokens_to_sequences.py
+│   ├── word_preprocessing.py
+│   ├── word_processing.py
+│   ├── build_vocab.py
+│   └── tokens_to_sequences.py
 │
 ├── docs/
-│ └── PROJECT_DETAILS.md
+│   └── PROJECT_DETAILS.md
 │
 ├── requirements.txt
 ├── README.md
 └── .gitignore
+</pre>
 
 
 ## Technologies Used
