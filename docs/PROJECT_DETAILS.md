@@ -1,92 +1,99 @@
 # Project Details
 
 ## Purpose of the Project
-This project aims to build a structured textual dataset related to **Generation Z** by collecting news content from online sources and preparing it for word processing tasks. The focus of the work so far has been on creating a reliable and clean data pipeline that can support further textual analysis.
+This project aims to build a structured textual dataset related to **Generation Z** by collecting news content from online sources and preparing it for advanced word processing and sentiment analysis.
 
-The intention is to first ensure high-quality data collection and preparation before proceeding to deeper word processing or analytical stages.
+The primary focus so far has been on designing a **reliable and reproducible data pipeline** that ensures data quality before applying any analytical or modeling techniques.
 
+---
 
 ## Data Source and Collection Method
 The data is collected using **Google News RSS feeds**, which provide structured access to news headlines and short descriptions from multiple publishers. RSS feeds were chosen because they:
 - offer regularly updated content
 - reduce the need for full web-page scraping
-- ensure consistent data structure across sources
+- ensure a consistent structure across sources
 
-Multiple Gen Z–related search queries were used to collect diverse news coverage across social, cultural, and professional contexts.
+A broad set of Gen Z– and youth-related queries was used to capture diverse perspectives across social, cultural, and socio-political contexts. Each entry includes the RSS publication date to support time-based analysis.
 
+---
 
 ## Text Extraction Strategy
 From each RSS feed entry:
 - article titles and descriptions are extracted
-- text is treated as raw unstructured data
+- text is treated as unstructured data
 - content is split at the sentence level to improve granularity
 
-Sentence-level extraction allows better control during cleaning and makes the dataset more suitable for word processing and linguistic analysis.
+Sentence-level extraction enables finer control during cleaning and is better suited for linguistic and sentiment-based analysis.
+
+---
 
 ## Data Cleaning and Normalization
-The collected text undergoes several preprocessing steps to improve quality and consistency:
-- removal of HTML tags and unnecessary symbols
+The collected text undergoes multiple preprocessing steps to improve quality and consistency:
+- removal of HTML tags and embedded links
 - normalization of punctuation and spacing
 - lowercasing of text
 - handling of encoding inconsistencies
 
-These steps ensure that superficial formatting differences do not affect later processing stages.
+These steps ensure that superficial formatting differences do not affect downstream processing.
 
+---
 
 ## Deduplication Approach
 Duplicate and near-duplicate sentences can occur due to:
-- similar headlines published by different sources
-- minor punctuation or formatting variations
+- syndicated news content
+- minor punctuation or formatting variations across sources
 
-Deduplication is handled during preprocessing by normalizing sentences before comparison. This ensures that repeated content does not bias later word-level analysis.
+Deduplication is handled by normalizing sentences before comparison, ensuring that repeated content does not bias analysis or modeling results.
 
+---
 
 ## Linguistic Preprocessing
-After cleaning, linguistic preprocessing is applied to prepare the text for word processing:
+After cleaning, linguistic preprocessing is applied to prepare the text for modeling:
 - stopwords are removed to reduce noise
-- words are lemmatized to bring them to their base forms
-- sentences are transformed into normalized representations
+- words are lemmatized to their base forms
+- sentences are converted into normalized textual representations
 
-This step improves consistency and reduces vocabulary size, which is important for meaningful word-level analysis.
+This step reduces vocabulary size and improves semantic consistency, which is especially important for deep learning–based models.
 
-## Tokenization and Structuring
-The processed text is then tokenized:
-- sentences are broken into individual word tokens
-- very short or insignificant tokens are filtered out
-- structured token lists are generated for each sentence
+---
 
-This representation bridges the gap between raw text and numerical processing.
+## Pipeline Evolution
+The project initially explored a **classical NLP pipeline**, including manual tokenization, vocabulary construction, and sequence generation. As the project scope evolved toward **CNN–LSTM–based sentiment analysis**, these steps were replaced by an end-to-end deep learning pipeline.
 
+Tokenization and sequence generation are now handled internally by the neural network framework. The earlier scripts have been archived for reference and documentation of the project’s evolution.
 
-## Preparation for Word Processing
-To support future word processing tasks:
-- a vocabulary mapping is created from the tokenized data
-- words are converted into numerical sequences
-- processed datasets are stored in a reusable format
+---
 
-At this stage, the data is **fully prepared** for word processing, frequency analysis, or further NLP-based exploration.
+## Preparation for Sentiment Analysis
+At the current stage:
+- the dataset is cleaned, deduplicated, and linguistically preprocessed
+- publication dates are preserved for temporal analysis
+- the data is ready to be passed directly into a CNN–LSTM sentiment classification model
 
+This setup supports analysis of sentiment trends **before, during, and after** significant events.
 
+---
 
 ## Current Status
-The web scraping and data preparation pipeline has been completed successfully.  
-The dataset is cleaned, structured, and ready for the next phase of word processing, which will be carried out based on further project guidance.
+The web scraping and preprocessing pipeline has been completed successfully.  
+The dataset is structured and ready for model training and sentiment-based analysis.
 
-
+---
 
 ## Design Considerations
 The project follows a modular design:
-- data collection, cleaning, and processing are handled in separate steps
-- each stage produces a clear output for the next stage
-- this structure improves reproducibility and ease of explanation
+- data collection, cleaning, and preprocessing are handled in separate scripts
+- each stage produces a clearly defined output
+- the pipeline is easy to audit, reproduce, and extend
 
-This approach ensures clarity both for academic evaluation and future extensions.
+This structure supports both academic evaluation and future experimentation.
 
+---
 
 ## Scope for Next Steps
-Depending on requirements, the prepared data can be used for:
-- word frequency and pattern analysis
-- phrase and n-gram extraction
-- thematic or sentiment-based studies
+The next phase of the project will involve:
+- training a CNN–LSTM model using a labeled sentiment dataset
+- applying the trained model to the collected news data
+- analyzing sentiment trends over time using publication dates
 
-Further analysis will be determined after review of the current stage.
+Further refinements will be carried out based on project review and guidance.
