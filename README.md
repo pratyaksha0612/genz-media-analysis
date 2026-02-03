@@ -1,37 +1,52 @@
-# Gen Z Word Processing Project
+# Gen Z Word Processing & Sentiment Analysis Project
 
-This project focuses on collecting Gen Z–related textual data from online news sources and preparing it for word processing and further text analysis.
+This project focuses on collecting Gen Z–related textual data from online news sources and preparing it for word processing and sentiment analysis, with a specific focus on temporal trends around major socio-political events.
+
+---
 
 ## Project Status
-**Current stage:** Web scraping completed and data prepared for word processing.
+**Current stage:**  
+Web scraping, cleaning, and linguistic preprocessing completed.  
+The project is now prepared for sentiment analysis using a CNN–LSTM model.
 
 ---
 
 ## Overview
-The objective of this project is to study how Generation Z is represented in online news media.  
-At this stage, the work focuses on:
-- Collecting relevant textual data
-- Cleaning and structuring the data
-- Preparing it for word processing tasks
+The objective of this project is to study how **Generation Z** is represented in online news media and how sentiment toward Gen Z–related issues changes over time.
 
-Further word processing and analysis will be carried out based on guidance from the project supervisor.
+At the current stage, the project includes:
+- Large-scale news data collection
+- Data cleaning and deduplication
+- Linguistic preprocessing
+- Preparation for deep learning–based sentiment analysis
+
+Further analysis will focus on sentiment trends **before, during, and after** significant events, as guided by the project supervisor.
 
 ---
 
 ## Data Collection
 - News data is collected using **Google News RSS feeds**
-- Multiple Gen Z–related queries are used to ensure coverage across topics such as lifestyle, work culture, psychology, and technology
-- Article titles and descriptions are extracted as text data
+- Broad queries related to Gen Z, youth, activism, and socio-political issues are used to ensure sufficient coverage
+- Article titles and descriptions are extracted
+- Each sentence is stored along with:
+  - source link
+  - RSS publication date
 
-## Data Cleaning & Preparation
+This ensures the dataset supports **temporal analysis**.
+
+---
+
+## Data Cleaning & Preprocessing
 The collected data undergoes the following steps:
 - Removal of HTML tags and noise
 - Sentence-level extraction
-- Deduplication to remove repeated content
-- Text normalization and preprocessing
-- Tokenization for word-level processing
+- Deduplication to remove repeated or near-duplicate content
+- Text normalization and lemmatization
+- Preservation of publication dates for time-based analysis
 
-The processed data is stored in structured CSV files for further analysis.
+The cleaned and preprocessed data is stored in structured CSV files.
+
+---
 
 ## Project Structure
 
@@ -44,17 +59,16 @@ WordProcessingProject/
 │   │
 │   └── processed/
 │       ├── genz_sentences_cleaned.csv
-│       ├── genz_sentences_processed.csv
-│       ├── genz_tokens.csv
-│       ├── vocab.json
-│       └── genz_sequences.csv
+│       └── genz_sentences_processed.csv
 │
 ├── scripts/
 │   ├── collect_data.py
 │   └── clean_data.py
 │
 ├── src/
-│   ├── word_preprocessing.py
+│   └── word_preprocessing.py
+│
+├── archive/
 │   ├── word_processing.py
 │   ├── build_vocab.py
 │   └── tokens_to_sequences.py
@@ -67,21 +81,31 @@ WordProcessingProject/
 └── .gitignore
 </pre>
 
+---
+
+## Pipeline Note
+Earlier scripts implementing a **classical NLP pipeline** (manual tokenization, vocabulary construction, and sequence generation) have been archived.  
+The current phase uses a **CNN–LSTM–based sentiment analysis approach**, where tokenization and sequence handling are managed internally by the deep learning framework.
+
+---
 
 ## Technologies Used
-- Python
-- Requests
-- BeautifulSoup
-- Pandas
-- NLTK
-- Regular Expressions
+- Python  
+- Requests  
+- BeautifulSoup  
+- Pandas  
+- NLTK  
+- Regular Expressions  
+
+---
 
 ## Next Steps
-- Proceed with word processing and analysis as per supervisor’s instructions
-- Explore word frequency, patterns, or other linguistic insights if required
+- Train a CNN–LSTM model for sentiment classification using a labeled dataset
+- Apply the trained model to the collected news data
+- Analyze sentiment trends over time using publication dates
 
 ---
 
 ## Notes
 This repository is maintained as part of a **group academic project**.  
-All progress has been documented incrementally to ensure clarity and reproducibility.
+All stages have been documented incrementally to ensure clarity, reproducibility, and alignment with academic requirements.

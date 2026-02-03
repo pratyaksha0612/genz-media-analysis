@@ -18,7 +18,7 @@ lemmatizer = WordNetLemmatizer()
 
 def preprocess(sentence):
     sentence = sentence.lower()
-    sentence = re.sub(r"[^a-z\s]", "", sentence)
+    sentence = re.sub(r"[^a-z0-9\s]", "", sentence)  # keep numbers
     words = sentence.split()
     words = [w for w in words if w not in stop_words]
     words = [lemmatizer.lemmatize(w) for w in words]
@@ -26,7 +26,8 @@ def preprocess(sentence):
 
 df["processed_sentence"] = df["Sentence"].astype(str).apply(preprocess)
 
-df.to_csv(OUTPUT_PATH, index=False)
+df.to_csv(OUTPUT_PATH, index=False, encoding="utf-8")
 
 print("Preprocessing complete")
 print(f"Saved to: {OUTPUT_PATH}")
+print(f"Total rows processed: {len(df)}")

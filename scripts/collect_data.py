@@ -5,22 +5,40 @@ import re
 import time
 import unicodedata
 import os
+from datetime import datetime
+
 
 queries = [
+    # Core Gen Z
     "Gen Z",
     "Generation Z",
-    "Gen Z lifestyle",
-    "Gen Z trends",
-    "Gen Z work culture",
-    "Gen Z report",
-    "Gen Z analysis",
-    "Gen Z India",
-    "Gen Z behavior",
-    "Gen Z news",
-    "Gen Z technology",
-    "Gen Z psychology",
-    "Gen Z social media"
+    "Gen Z youth",
+    "Gen Z students",
+    "Gen Z activism",
+
+    # Youth & society
+    "youth movement",
+    "youth activism",
+    "student movement",
+    "student protests",
+    "youth unrest",
+
+    # Politics & protests
+    "youth protests",
+    "student protests Asia",
+    "political protests youth",
+    "election protests youth",
+    "government protests youth",
+
+    # Nepal-specific 
+    "Nepal youth",
+    "Nepal Gen Z",
+    "Nepal students",
+    "Nepal youth movement",
+    "Nepal protests",
+    "Nepal political unrest"
 ]
+
 
 all_sentences = []
 
@@ -32,22 +50,12 @@ def clean_html(text):
     return text.strip()
 
 def normalize_for_dedup(text):
-    # Unicode normalization
     text = unicodedata.normalize("NFKD", text)
-
-    # Normalize dashes
     text = re.sub(r"[–—−]", "-", text)
-
-    # Remove quotes (single, double, smart quotes)
     text = re.sub(r"[\"'‘’“”]", "", text)
-
-    # Normalize punctuation spacing
     text = re.sub(r"\s*-\s*", " - ", text)
     text = re.sub(r"\s+", " ", text)
-
-    # Remove trailing punctuation
     text = text.strip(" .,-:")
-
     return text.lower()
 
 def split_sentences(text):
@@ -58,6 +66,16 @@ def split_sentences(text):
         if len(s.split()) >= 6:
             sentences.append(s + ".")
     return sentences
+
+def parse_pub_date(pub_date_str):
+    """
+    Convert RSS pubDate string to YYYY-MM-DD format.
+    """
+    try:
+        dt = datetime.strptime(pub_date_str, "%a, %d %b %Y %H:%M:%S %Z")
+        return dt.date().isoformat()
+    except Exception:
+        return None
 
 def get_data(q):
     rss = f"https://news.google.com/rss/search?q={q.replace(' ', '+')}"
@@ -76,10 +94,16 @@ def get_data(q):
         description = clean_html(item.description.get_text(strip=True))
         link = item.link.get_text(strip=True)
 
+        pub_date_tag = item.find("pubDate")
+        published_date = (
+            parse_pub_date(pub_date_tag.get_text(strip=True))
+            if pub_date_tag else None
+        )
+
         for s in split_sentences(title):
-            all_sentences.append([s.strip(), link])
+            all_sentences.append([s.strip(), link, published_date])
         for s in split_sentences(description):
-            all_sentences.append([s.strip(), link])
+            all_sentences.append([s.strip(), link, published_date])
 
 for q in queries:
     print("Fetching:", q)
@@ -89,17 +113,17 @@ for q in queries:
 unique = []
 seen = set()
 
-for sentence, link in all_sentences:
+for sentence, link, published_date in all_sentences:
     key = normalize_for_dedup(sentence)
     if key not in seen:
         seen.add(key)
-        unique.append([sentence, link])
+        unique.append([sentence, link, published_date])
 
 os.makedirs("data/raw", exist_ok=True)
 
 with open("data/raw/genz_sentences.csv", "w", newline="", encoding="utf-8") as f:
     writer = csv.writer(f)
-    writer.writerow(["Sentence", "Source"])
+    writer.writerow(["Sentence", "Source", "Published_Date"])
     writer.writerows(unique)
 
 print("Total UNIQUE sentences:", len(unique))
