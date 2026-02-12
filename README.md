@@ -1,6 +1,7 @@
 # GenZ Media Sentiment Analysis  
 ### A Comparative Study of Institutional Media vs Public Sentiment During the Nepal Protest
 
+---
 
 ## 📌 Project Overview
 
@@ -34,6 +35,7 @@ The goal is to understand how institutional media tone differs from public senti
 
 ## 📂 Project Structure
 
+```
 .
 │   .gitignore
 │   README.md
@@ -109,10 +111,12 @@ The goal is to understand how institutional media tone differs from public senti
 - RSS headlines collected using `collect_data.py`
 - YouTube comments scraped using `yt_scrapper.py`
 
+---
 
 ### B. Data Preprocessing
 
 Steps applied:
+
 - Lowercasing
 - URL removal
 - Punctuation removal
@@ -125,6 +129,7 @@ Files:
 - `preprocess.py`
 - `word_preprocessing.py`
 
+---
 
 ### C. Sentiment Analysis Techniques
 
@@ -218,6 +223,7 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
+---
 
 ## 🧠 Tech Stack
 
@@ -237,3 +243,6 @@ pip install -r requirements.txt
 Pratyaksha Singh  
 B.Tech CSE (AI & ML)  
 NLP | Sentiment Analysis | Deep Learning | Media Analytics
+
+---
+
