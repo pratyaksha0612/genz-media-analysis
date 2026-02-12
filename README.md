@@ -1,111 +1,111 @@
-# Gen Z Word Processing & Sentiment Analysis Project
+📰📊 Gen Z Media Sentiment Analysis
 
-This project focuses on collecting Gen Z–related textual data from online news sources and preparing it for word processing and sentiment analysis, with a specific focus on temporal trends around major socio-political events.
+This project analyzes how Generation Z is portrayed and discussed across different media sources using Natural Language Processing and Deep Learning techniques.
+The repository consists of two major analytical pipelines:
+RSS News Media Analysis
+YouTube Protest Discourse Analysis
+The project combines:
+Lexicon-based sentiment analysis (VADER)
+Deep learning using CNN + LSTM
+Cross-domain comparison of sentiment patterns
 
----
-
-## Project Status
-**Current stage:**  
-Web scraping, cleaning, and linguistic preprocessing completed.  
-The project is now prepared for sentiment analysis using a CNN–LSTM model.
-
----
-
-## Overview
-The objective of this project is to study how **Generation Z** is represented in online news media and how sentiment toward Gen Z–related issues changes over time.
-
-At the current stage, the project includes:
-- Large-scale news data collection
-- Data cleaning and deduplication
-- Linguistic preprocessing
-- Preparation for deep learning–based sentiment analysis
-
-Further analysis will focus on sentiment trends **before, during, and after** significant events, as guided by the project supervisor.
-
----
-
-## Data Collection
-- News data is collected using **Google News RSS feeds**
-- Broad queries related to Gen Z, youth, activism, and socio-political issues are used to ensure sufficient coverage
-- Article titles and descriptions are extracted
-- Each sentence is stored along with:
-  - source link
-  - RSS publication date
-
-This ensures the dataset supports **temporal analysis**.
-
----
-
-## Data Cleaning & Preprocessing
-The collected data undergoes the following steps:
-- Removal of HTML tags and noise
-- Sentence-level extraction
-- Deduplication to remove repeated or near-duplicate content
-- Text normalization and lemmatization
-- Preservation of publication dates for time-based analysis
-
-The cleaned and preprocessed data is stored in structured CSV files.
-
----
-
-## Project Structure
-
-<pre>
+📂 Repository Structure
 WordProcessingProject/
+│
+├── RSS_ANALYSIS/
+├── YT_ANALYSIS/
+├── doc+s/
+├── README.md
+└── requirements.txt
+
+📰 1️⃣ RSS_ANALYSIS – News Media Sentiment
+Objective
+To analyze how Gen Z is portrayed in online news media using RSS feeds.
+Pipeline
+RSS feed collection
+Text preprocessing
+Sentence-level sentiment extraction
+CNN + LSTM model training on RSS data
+Sentiment result aggregation
+
+Key Files
+RSS_ANALYSIS/
 │
 ├── data/
 │   ├── raw/
-│   │   └── genz_sentences.csv
-│   │
-│   └── processed/
-│       ├── genz_sentences_cleaned.csv
-│       └── genz_sentences_processed.csv
+│   ├── processed/
+│   └── final/
+│
+├── notebooks/
+│   └── cnn_lstm_rss.ipynb
 │
 ├── scripts/
 │   ├── collect_data.py
 │   └── clean_data.py
 │
-├── src/
-│   └── word_preprocessing.py
-│
-├── archive/
-│   ├── word_processing.py
-│   ├── build_vocab.py
-│   └── tokens_to_sequences.py
-│
-├── docs/
-│   └── PROJECT_DETAILS.md
-│
-├── requirements.txt
-├── README.md
-└── .gitignore
-</pre>
+└── src/
+    └── word_preprocessing.py
 
----
+Outcome
+The RSS pipeline provides sentiment trends in traditional news coverage related to Gen Z.
 
-## Pipeline Note
-Earlier scripts implementing a **classical NLP pipeline** (manual tokenization, vocabulary construction, and sequence generation) have been archived.  
-The current phase uses a **CNN–LSTM–based sentiment analysis approach**, where tokenization and sequence handling are managed internally by the deep learning framework.
+📺 2️⃣ YT_ANALYSIS – YouTube Protest Sentiment
+Objective
+To analyze how public sentiment toward Gen Z evolved:
+Before the Nepal protest (8–13 September 2025)
+During the protest
+After the protest
+Data Collection
+Source: YouTube comments
+Time Window:
+2 months before protest
+Protest duration
+2 months after protest
+Dataset: ~1100 cleaned comments
 
----
+Methods Used
+A. Lexicon-Based Sentiment (VADER)
 
-## Technologies Used
-- Python  
-- Requests  
-- BeautifulSoup  
-- Pandas  
-- NLTK  
-- Regular Expressions  
+Classifies: Positive / Neutral / Negative
+Optimized for social media
+Used to compute 3-class sentiment distribution
 
----
+B. Deep Learning Sentiment (CNN + LSTM)
 
-## Next Steps
-- Train a CNN–LSTM model for sentiment classification using a labeled dataset
-- Apply the trained model to the collected news data
-- Analyze sentiment trends over time using publication dates
+Architecture:
+Embedding → Conv1D → MaxPooling → LSTM → Dense → Sigmoid
 
----
+Training Strategy:
+Model trained on IMDB dataset (~25,000 labeled reviews)
+Achieved ~85% validation accuracy
+Applied to Gen Z dataset for binary sentiment prediction
 
-## Notes
-This repository is maintained as part of a **group academic project**.  
-All stages have been documented incrementally to ensure clarity, reproducibility, and alignment with academic requirements.
+This ensures:
+Robust deep learning sentiment modeling
+Cross-domain validation
+
+Key Findings
+RSS Media:
+News sentiment trends show structured portrayal patterns.
+YouTube Protest Data:
+Pre-protest phase exhibited highest negative sentiment.
+During and post-protest phases showed increased positivity.
+Both VADER and CNN + LSTM indicate measurable sentiment shifts.
+
+🧠 Research Contribution
+This project demonstrates:
+Cross-platform sentiment comparison (News vs YouTube)
+Lexicon-based vs Deep Learning approaches
+Domain transfer learning for sentiment classification
+Temporal sentiment evolution analysis
+
+🛠 Technologies Used
+Python
+Pandas
+NLTK (VADER)
+TensorFlow / Keras
+CNN + LSTM
+Matplotlib / Seaborn
+
+📌 Conclusion
+The combined use of traditional NLP and deep learning methods reveals dynamic sentiment shifts in media discourse about Generation Z across platforms and time periods.
