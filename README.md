@@ -1,111 +1,239 @@
-📰📊 Gen Z Media Sentiment Analysis
+# GenZ Media Sentiment Analysis  
+### A Comparative Study of Institutional Media vs Public Sentiment During the Nepal Protest
 
-This project analyzes how Generation Z is portrayed and discussed across different media sources using Natural Language Processing and Deep Learning techniques.
-The repository consists of two major analytical pipelines:
-RSS News Media Analysis
-YouTube Protest Discourse Analysis
-The project combines:
-Lexicon-based sentiment analysis (VADER)
-Deep learning using CNN + LSTM
-Cross-domain comparison of sentiment patterns
 
-📂 Repository Structure
-WordProcessingProject/
+## 📌 Project Overview
+
+This project performs a **temporal sentiment analysis** on Generation Z–related discourse surrounding the Nepal protest.  
+
+The study analyzes sentiment across three time phases:
+
+- **Before the protest**
+- **During the protest**
+- **After the protest**
+
+The project compares:
+
+1. **News headlines (Google RSS feeds)**
+2. **YouTube public comments**
+3. **VADER (Rule-based NLP)**
+4. **CNN + LSTM (Deep Learning Model)**
+
+The goal is to understand how institutional media tone differs from public sentiment and how traditional NLP compares with deep learning approaches.
+
+---
+
+## 🎯 Research Objectives
+
+- Analyze sentiment trends across protest phases.
+- Compare institutional media vs public discourse.
+- Compare lexicon-based NLP with deep learning.
+- Evaluate sentiment shifts across time.
+
+---
+
+## 📂 Project Structure
+
+.
+│   .gitignore
+│   README.md
+│   requirements.txt
 │
-├── RSS_ANALYSIS/
-├── YT_ANALYSIS/
-├── doc+s/
-├── README.md
-└── requirements.txt
-
-📰 1️⃣ RSS_ANALYSIS – News Media Sentiment
-Objective
-To analyze how Gen Z is portrayed in online news media using RSS feeds.
-Pipeline
-RSS feed collection
-Text preprocessing
-Sentence-level sentiment extraction
-CNN + LSTM model training on RSS data
-Sentiment result aggregation
-
-Key Files
-RSS_ANALYSIS/
+├───docs
+│       PROJECT_DETAILS.md
 │
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── final/
+├───RSS_ANALYSIS
+│   ├───data
+│   │   ├───final
+│   │   │       genz_sentiment_results.csv
+│   │   │
+│   │   ├───processed
+│   │   │       genz_sentences_cleaned.csv
+│   │   │       genz_sentences_processed.csv
+│   │   │
+│   │   └───raw
+│   │           genz_sentences.csv
+│   │
+│   ├───notebooks
+│   │       cnn_lstm_rss.ipynb
+│   │
+│   ├───scripts
+│   │       clean_data.py
+│   │       collect_data.py
+│   │
+│   └───src
+│           word_preprocessing.py
 │
-├── notebooks/
-│   └── cnn_lstm_rss.ipynb
-│
-├── scripts/
-│   ├── collect_data.py
-│   └── clean_data.py
-│
-└── src/
-    └── word_preprocessing.py
+├───YT_ANALYSIS
+│   ├───models
+│   │       cnn_lstm_imdb_sentiment_model.h5
+│   │
+│   ├───notebooks
+│   │       cnn_lstm_analysis.ipynb
+│   │       vader_analysis.ipynb
+│   │
+│   ├───processed
+│   │       cleaned_data.csv
+│   │       sentiment_labeled_data.csv
+│   │
+│   ├───raw
+│   │       youtube_nepal_genz_dataset.csv
+│   │
+│   └───scripts
+│           generate_sentiment_labels.py
+│           preprocess.py
+│           sentiment_check.py
+│           yt_scrapper.py
+```
 
-Outcome
-The RSS pipeline provides sentiment trends in traditional news coverage related to Gen Z.
+---
 
-📺 2️⃣ YT_ANALYSIS – YouTube Protest Sentiment
-Objective
-To analyze how public sentiment toward Gen Z evolved:
-Before the Nepal protest (8–13 September 2025)
-During the protest
-After the protest
-Data Collection
-Source: YouTube comments
-Time Window:
-2 months before protest
-Protest duration
-2 months after protest
-Dataset: ~1100 cleaned comments
+## 🔎 Data Sources
 
-Methods Used
-A. Lexicon-Based Sentiment (VADER)
+### 1️⃣ RSS Headlines
+- Collected using Google RSS feeds
+- Institutional news perspective
+- Structured into raw → processed → final stages
 
-Classifies: Positive / Neutral / Negative
-Optimized for social media
-Used to compute 3-class sentiment distribution
+### 2️⃣ YouTube Comments
+- Scraped from protest-related videos
+- Higher emotional variance than headlines
+- Used for both VADER and CNN+LSTM analysis
 
-B. Deep Learning Sentiment (CNN + LSTM)
+---
 
-Architecture:
-Embedding → Conv1D → MaxPooling → LSTM → Dense → Sigmoid
+## ⚙️ Methodology
 
-Training Strategy:
-Model trained on IMDB dataset (~25,000 labeled reviews)
-Achieved ~85% validation accuracy
-Applied to Gen Z dataset for binary sentiment prediction
+### A. Data Collection
 
-This ensures:
-Robust deep learning sentiment modeling
-Cross-domain validation
+- RSS headlines collected using `collect_data.py`
+- YouTube comments scraped using `yt_scrapper.py`
 
-Key Findings
-RSS Media:
-News sentiment trends show structured portrayal patterns.
-YouTube Protest Data:
-Pre-protest phase exhibited highest negative sentiment.
-During and post-protest phases showed increased positivity.
-Both VADER and CNN + LSTM indicate measurable sentiment shifts.
 
-🧠 Research Contribution
-This project demonstrates:
-Cross-platform sentiment comparison (News vs YouTube)
-Lexicon-based vs Deep Learning approaches
-Domain transfer learning for sentiment classification
-Temporal sentiment evolution analysis
+### B. Data Preprocessing
 
-🛠 Technologies Used
-Python
-Pandas
-NLTK (VADER)
-TensorFlow / Keras
-CNN + LSTM
-Matplotlib / Seaborn
+Steps applied:
+- Lowercasing
+- URL removal
+- Punctuation removal
+- Stopword removal
+- Tokenization
+- Sequence padding (for deep learning)
 
-📌 Conclusion
-The combined use of traditional NLP and deep learning methods reveals dynamic sentiment shifts in media discourse about Generation Z across platforms and time periods.
+Files:
+- `clean_data.py`
+- `preprocess.py`
+- `word_preprocessing.py`
+
+
+### C. Sentiment Analysis Techniques
+
+#### 1️⃣ VADER (Lexicon-Based NLP)
+
+- Rule-based sentiment analyzer
+- Generates compound score
+- Classified into:
+  - Positive
+  - Neutral
+  - Negative
+
+Notebook:
+- `vader_analysis.ipynb`
+
+Used as baseline NLP model.
+
+---
+
+#### 2️⃣ CNN + LSTM (Deep Learning Model)
+
+Hybrid architecture:
+
+- Embedding Layer
+- Convolutional Layer (feature extraction)
+- MaxPooling
+- LSTM Layer (context learning)
+- Dense Output Layer (Softmax classification)
+
+Model file:
+- `cnn_lstm_imdb_sentiment_model.h5`
+
+Notebooks:
+- `cnn_lstm_rss.ipynb`
+- `cnn_lstm_analysis.ipynb`
+
+Purpose:
+- Capture contextual sentiment patterns
+- Compare performance against VADER
+
+---
+
+## 📊 Comparative Analysis
+
+This project performs three levels of comparison:
+
+### 1️⃣ Source Comparison
+- RSS Headlines vs YouTube Comments
+
+### 2️⃣ Method Comparison
+- VADER vs CNN + LSTM
+
+### 3️⃣ Temporal Comparison
+- Before vs During vs After Protest
+
+---
+
+## 📈 Key Observations
+
+- RSS headlines show relatively neutral sentiment distribution.
+- YouTube comments exhibit higher emotional polarization.
+- CNN + LSTM captures contextual sentiment shifts better than VADER.
+- Institutional media tone differs from public reaction.
+
+---
+
+## ⚠️ Limitations
+
+- Headlines are short and often neutral.
+- CNN + LSTM model trained on general sentiment data (not protest-specific).
+- API restrictions limited Twitter/Reddit data collection.
+- YouTube scraping constrained by time range availability.
+
+---
+
+## 🚀 Future Improvements
+
+- Train protest-specific sentiment model.
+- Integrate Twitter/X data (if API access available).
+- Add topic modeling.
+- Include accuracy metrics and confusion matrix.
+- Expand dataset diversity.
+
+---
+
+## 🛠 Requirements
+
+Install dependencies:
+
+```
+pip install -r requirements.txt
+```
+
+
+## 🧠 Tech Stack
+
+- Python
+- Pandas
+- NumPy
+- NLTK
+- VADER
+- TensorFlow / Keras
+- CNN + LSTM Architecture
+- Jupyter Notebook
+
+---
+
+## 👩‍💻 Author
+
+Pratyaksha Singh  
+B.Tech CSE (AI & ML)  
+NLP | Sentiment Analysis | Deep Learning | Media Analytics
